@@ -28,7 +28,7 @@ export default function FundedAccountsPage() {
         short
         kicker="ZenithWave Capital — Funded accounts"
         meta={`$5K – ${usd(maxBalance / 1000)}K · Up to 90% split`}
-        titleClassName="text-[clamp(3rem,8.4vw,8.2rem)] max-w-[14ch]"
+        titleClassName="text-[clamp(3.4rem,9vw,8.75rem)]"
         title={
           <>
             Fund. Trade.

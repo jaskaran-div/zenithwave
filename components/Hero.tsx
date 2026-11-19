@@ -53,7 +53,7 @@ export function WaveHero({
   title,
   children,
   short = false,
-  titleClassName = "text-[clamp(2.8rem,7vw,6.6rem)] max-w-[17ch]",
+  titleClassName = "text-[clamp(3.6rem,10.4vw,9.75rem)]",
 }: {
   kicker?: ReactNode;
   meta?: ReactNode;
@@ -85,7 +85,7 @@ export function PageHero({
   title,
   children,
   action,
-  titleClassName = "text-[clamp(3rem,8.4vw,8.2rem)] max-w-[14ch]",
+  titleClassName = "text-[clamp(3.4rem,9vw,8.75rem)]",
 }: {
   kicker?: ReactNode;
   meta?: ReactNode;

@@ -19,7 +19,7 @@ export default function LegalHero() {
       kicker="Legal & policies"
       meta="ZenithWave Capital Limited"
       title={title}
-      titleClassName="text-[clamp(2.8rem,7vw,6.6rem)] max-w-[14ch]"
+      titleClassName="text-[clamp(3rem,7vw,6.5rem)]"
     />
   );
 }

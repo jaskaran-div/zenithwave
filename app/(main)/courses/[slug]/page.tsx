@@ -78,7 +78,7 @@ export default async function ProgrammePage({ params }: PageProps<"/courses/[slu
         }
         meta={p.comingSoon ? "Coming soon" : p.badge}
         title={p.title}
-        titleClassName="text-[clamp(2.6rem,6.4vw,6rem)] max-w-[16ch]"
+        titleClassName="text-[clamp(2.8rem,6.2vw,6rem)] !leading-[0.95] max-w-[18ch]"
       >
         <p className="font-serif text-[clamp(22px,2.2vw,30px)] leading-snug text-lime italic">{p.tagline}</p>
       </WaveHero>

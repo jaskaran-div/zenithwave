@@ -313,24 +313,25 @@ body {
 /* ── Reference-site hero ("tide line") ──────────────────────────
    Used by <HomeHero>, <PageHero> and <WaveField>. Not used on the
    IT Services or Contact pages, which keep the original hero. */
+/* Same face as the site's original headlines (.display) */
 .hero-display {
-  font-family: var(--font-bricolage), var(--font-sans);
-  font-weight: 700;
-  font-variation-settings: "opsz" 96, "wdth" 75;
+  font-family: var(--font-serif);
+  font-weight: 400;
   letter-spacing: -0.035em;
   line-height: 0.9;
-  text-wrap: balance;
-}
-.hero-display em {
-  font-style: normal;
 }
 /* Headline words rise out of a mask, one after another */
 .mask {
   display: inline-block;
   overflow: hidden;
   vertical-align: top;
-  padding-bottom: 0.08em;
-  margin-bottom: -0.08em;
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
+}
+/* room for italic overhang so the mask doesn't clip it */
+.hero-display em .mask {
+  padding-right: 0.1em;
+  margin-right: -0.1em;
 }
 .mask > span {
   display: inline-block;
