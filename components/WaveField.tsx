@@ -7,7 +7,7 @@ type Props = {
   className?: string;
   /** Index (0–1) of the highlighted brass "market" line. */
   highlight?: number;
-  /** Show the London-session readout that follows the pointer. */
+  /** Show the London-session time label that follows the pointer (off by default). */
   readout?: boolean;
   intensity?: number;
 };
@@ -18,7 +18,7 @@ const SESSION_LEN = 8.5 * 60;
 const fmt = (m: number) => `${String(Math.floor(m / 60)).padStart(2, "0")}:${String(Math.floor(m % 60)).padStart(2, "0")}`;
 
 /** Animated wave lines behind the hero (ported from the ZenithWave brand site). */
-export default function WaveField({ lines = 24, className = "", highlight = 0.58, readout = true, intensity = 1 }: Props) {
+export default function WaveField({ lines = 24, className = "", highlight = 0.58, readout = false, intensity = 1 }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const tipRef = useRef<HTMLDivElement>(null);
   const dotRef = useRef<HTMLSpanElement>(null);

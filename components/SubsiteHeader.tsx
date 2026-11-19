@@ -1,7 +1,12 @@
 "use client";
 
 import Logo from "@/components/Logo";
-import { AuthButtons, MenuButton, headerClass, useHeaderState } from "@/components/Header";
+import {
+  AuthButtons,
+  MenuButton,
+  headerClass,
+  useHeaderState,
+} from "@/components/Header";
 import { mainHref, siteUrls } from "@/lib/site";
 
 type Props = {
@@ -23,45 +28,73 @@ export default function SubsiteHeader({ section, links, cta }: Props) {
   ];
 
   return (
-    <header className={headerClass(scrolled, open)}>
-      <div className="wrap flex h-[76px] items-center justify-between gap-6">
-        <a href="/" aria-label={`ZenithWave Capital ${section}`} className="flex min-h-11 items-center gap-3" onClick={close}>
-          <Logo />
-          <span className="label hidden border-l border-line pl-3 text-[11px] text-brass sm:inline">{section}</span>
-        </a>
-
-        <nav aria-label={section} className="hidden items-center gap-0.5 xl:flex">
-          {links.map((l) => (
-            <a key={l.href} href={l.href} className="inline-flex min-h-11 items-center rounded-[10px] px-3.5 text-sm font-medium text-muted transition-colors hover:text-bone">
-              {l.label}
-            </a>
-          ))}
-          <span aria-hidden="true" className="mx-2 h-5 w-px bg-line" />
-          {back.map((l) => (
-            <a key={l.label} href={l.href} className="inline-flex min-h-11 items-center rounded-[10px] px-3.5 text-sm font-medium text-muted transition-colors hover:text-bone">
-              {l.label}
-            </a>
-          ))}
-        </nav>
-
-        {cta ? (
-          <a href={mainHref(cta.href)} className="btn-lime hidden !min-h-11 !px-5 !text-sm xl:inline-flex">
-            {cta.label} →
+    <>
+      <header className={headerClass(scrolled, open)}>
+        <div className="wrap flex h-[76px] items-center justify-between gap-6">
+          <a
+            href="/"
+            aria-label={`ZenithWave Capital ${section}`}
+            className="flex min-h-11 items-center gap-3"
+            onClick={close}
+          >
+            <Logo />
+            <span className="label hidden border-l border-line pl-3 text-[11px] text-brass sm:inline">
+              {section}
+            </span>
           </a>
-        ) : (
-          <AuthButtons className="hidden items-center gap-2 xl:flex" />
-        )}
 
-        <MenuButton open={open} onClick={() => setOpen((v) => !v)} />
-      </div>
+          <nav
+            aria-label={section}
+            className="hidden items-center gap-0.5 xl:flex"
+          >
+            {links.map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                className="inline-flex min-h-11 items-center rounded-[10px] px-3.5 text-sm font-medium text-muted transition-colors hover:text-bone"
+              >
+                {l.label}
+              </a>
+            ))}
+            <span aria-hidden="true" className="mx-2 h-5 w-px bg-line" />
+            {back.map((l) => (
+              <a
+                key={l.label}
+                href={l.href}
+                className="inline-flex min-h-11 items-center rounded-[10px] px-3.5 text-sm font-medium text-muted transition-colors hover:text-bone"
+              >
+                {l.label}
+              </a>
+            ))}
+          </nav>
 
+          {cta ? (
+            <a
+              href={mainHref(cta.href)}
+              className="btn-lime hidden !min-h-11 !px-5 !text-sm xl:inline-flex"
+            >
+              {cta.label} →
+            </a>
+          ) : (
+            <AuthButtons className="hidden items-center gap-2 xl:flex" />
+          )}
+
+          <MenuButton open={open} onClick={() => setOpen((v) => !v)} />
+        </div>
+      </header>
+
+      {/* Mobile menu — outside <header>: the header's backdrop-blur would otherwise
+          become the containing block of this fixed panel and collapse it. */}
       <div
         id="mobile-menu"
-        className={`fixed inset-x-0 top-[77px] bottom-0 overflow-y-auto bg-ink transition-[opacity,visibility] duration-500 xl:hidden ${
+        className={`fixed inset-x-0 top-[77px] bottom-0 z-40 overflow-y-auto bg-ink transition-[opacity,visibility] duration-500 xl:hidden ${
           open ? "visible opacity-100" : "invisible opacity-0"
         }`}
       >
-        <nav aria-label={`${section} mobile`} className="wrap flex flex-col pt-3 pb-10">
+        <nav
+          aria-label={`${section} mobile`}
+          className="wrap flex flex-col pt-3 pb-10"
+        >
           <p className="label pt-4 pb-2 text-brass">{section}</p>
           {[...links, ...back].map((l, i) => (
             <a
@@ -74,11 +107,17 @@ export default function SubsiteHeader({ section, links, cta }: Props) {
               }`}
             >
               <span>{l.label}</span>
-              <span className="label text-muted">{i < links.length ? `0${i + 1}` : "↗"}</span>
+              <span className="label text-muted">
+                {i < links.length ? `0${i + 1}` : "↗"}
+              </span>
             </a>
           ))}
           {cta ? (
-            <a href={mainHref(cta.href)} onClick={close} className={`btn-lime mt-8 transition-all delay-500 duration-700 ${open ? "opacity-100" : "opacity-0"}`}>
+            <a
+              href={mainHref(cta.href)}
+              onClick={close}
+              className={`btn-lime mt-8 transition-all delay-500 duration-700 ${open ? "opacity-100" : "opacity-0"}`}
+            >
               {cta.label} →
             </a>
           ) : (
@@ -89,6 +128,6 @@ export default function SubsiteHeader({ section, links, cta }: Props) {
           )}
         </nav>
       </div>
-    </header>
+    </>
   );
 }
