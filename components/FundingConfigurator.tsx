@@ -217,13 +217,13 @@ export default function FundingConfigurator() {
           ))}
         </dl>
         <div className="p-6">
-          <a href={authLinks.signUp} className="btn-lime w-full">
+          <a href={authLinks.signIn} className="btn-lime w-full">
             Purchase challenge →
           </a>
           <p className="mt-3 text-center text-xs text-muted">
-            Already have an account?{" "}
-            <a href={authLinks.signIn} className="text-bone underline-offset-4 hover:underline">
-              Sign in
+            New here?{" "}
+            <a href={authLinks.signUp} className="text-bone underline-offset-4 hover:underline">
+              Sign up
             </a>
           </p>
         </div>

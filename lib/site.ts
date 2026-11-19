@@ -54,7 +54,7 @@ export const mainHref = (path: string) => `${siteUrls.main}${path}`;
 
 // ── Sign in / Sign up ────────────────────────────────────────────────────────
 // Prop Account dashboard. Used in every navbar; "Purchase challenge" on the
-// funded site sends buyers to sign up.
+// funded site sends buyers to sign in.
 export const authLinks = {
   signIn: "https://zenithwavecapitaldashboard.propaccount.com/en/sign-in",
   signUp: "https://zenithwavecapitaldashboard.propaccount.com/en/sign-up",
