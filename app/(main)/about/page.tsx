@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { PageHero } from "@/components/Hero";
 import PageTransition from "@/components/PageTransition";
 import Reveal from "@/components/Reveal";
 import { SectionHead } from "@/components/ui";
@@ -29,17 +30,19 @@ const initials = (name: string) =>
 export default function AboutPage() {
   return (
     <PageTransition>
-      <section className="wrap pt-7">
-        <div className="label flex flex-wrap justify-between gap-2 border-b border-line pb-3.5 text-muted">
-          <span>/ About ZenithWave</span>
-          <span>Incorporated 14 Feb 2025 · No. {site.companyNumber}</span>
-        </div>
-        <h1 className="display animate-rise mt-14 text-[clamp(3.4rem,8.6vw,8.25rem)]">
-          Professional trading,
-          <br />
-          <em className="text-lime">made accessible.</em>
-        </h1>
-        <div className="flex flex-wrap gap-12 border-b border-line pt-14 pb-[100px]">
+      <PageHero
+        kicker="About ZenithWave"
+        meta={`Incorporated 14 Feb 2025 · No. ${site.companyNumber}`}
+        title={
+          <>
+            Professional trading,
+            <br />
+            <em className="text-lime">made accessible.</em>
+          </>
+        }
+      />
+      <section className="wrap">
+        <div className="flex flex-wrap gap-12 border-y border-line pt-14 pb-[100px]">
           <Reveal as="p" className="min-w-0 flex-[1.4_1_480px] font-serif text-[clamp(26px,2.4vw,36px)] leading-[1.25]">
             We believe anyone willing to commit can build the skills to succeed — given the right training, mentorship and support.{" "}
             <span className="text-muted">So we built a structured system that connects learning with live trading.</span>

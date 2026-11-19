@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Accordion from "@/components/Accordion";
 import ModuleList from "@/components/ModuleList";
+import { MaskTitle } from "@/components/Hero";
 import PageTransition from "@/components/PageTransition";
 import Reveal from "@/components/Reveal";
 import { ArrowRight } from "@/components/ui";
@@ -80,7 +81,7 @@ export default async function ProgrammePage({ params }: PageProps<"/courses/[slu
               {p.comingSoon && <span className="animate-pulse-dot h-1.5 w-1.5 rounded-full bg-lime" />}
               {p.comingSoon ? "Coming soon" : p.badge}
             </span>
-            <h1 className="display animate-rise mt-6 text-[clamp(2.8rem,6.2vw,6rem)] !leading-[0.95]">{p.title}</h1>
+            <MaskTitle className="mt-6 text-[clamp(2.6rem,6vw,5.6rem)]">{p.title}</MaskTitle>
             <p className="animate-rise mt-6 font-serif text-[clamp(22px,2.2vw,30px)] text-lime italic" style={{ ["--delay" as string]: "100ms" }}>
               {p.tagline}
             </p>

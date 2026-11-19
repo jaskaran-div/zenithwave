@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Instrument_Serif, Inter_Tight, JetBrains_Mono } from "next/font/google";
+import { Bricolage_Grotesque, Instrument_Serif, Inter_Tight, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { site } from "@/lib/site";
 
@@ -10,6 +10,8 @@ const instrument = Instrument_Serif({
   weight: "400",
   style: ["normal", "italic"],
 });
+// Hero headlines (reference-site style): condensed, bold, via the width/optical-size axes.
+const bricolage = Bricolage_Grotesque({ variable: "--font-bricolage", subsets: ["latin"], axes: ["wdth", "opsz"] });
 const jetbrains = JetBrains_Mono({ variable: "--font-jetbrains", subsets: ["latin"], weight: ["400", "500"] });
 
 export const metadata: Metadata = {
@@ -36,7 +38,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en-GB" className={`${interTight.variable} ${instrument.variable} ${jetbrains.variable}`}>
+    <html lang="en-GB" className={`${interTight.variable} ${instrument.variable} ${jetbrains.variable} ${bricolage.variable}`}>
       {/* Header/footer come from each site's route-group layout: (main), (funded), (it) */}
       <body className="flex min-h-screen flex-col">{children}</body>
     </html>

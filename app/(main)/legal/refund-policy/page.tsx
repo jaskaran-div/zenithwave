@@ -1,3 +1,4 @@
+import { MaskTitle } from "@/components/Hero";
 import type { Metadata } from "next";
 import { site } from "@/lib/site";
 
@@ -10,7 +11,7 @@ const Email = () => <a href={`mailto:${site.emails.support}`}>{site.emails.suppo
 export default function RefundPolicyPage() {
   return (
     <div className="legal-prose">
-      <h1 className="display mb-8 text-[clamp(3rem,6vw,5rem)]">Refund Policy</h1>
+      <MaskTitle className="mb-8 text-[clamp(2.8rem,6vw,5rem)]">Refund Policy</MaskTitle>
       <p>
         This Refund Policy outlines the terms and conditions under which refunds may be issued for training
         programs provided by ZenithWave Capital Limited (“Company”, “we”, “our”, or “us”). By enrolling in

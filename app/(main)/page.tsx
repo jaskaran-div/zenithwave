@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Accordion from "@/components/Accordion";
 import PageTransition from "@/components/PageTransition";
+import { WaveHero } from "@/components/Hero";
 import Reveal from "@/components/Reveal";
 import { ArrowRight, ArrowUpRight, Kicker, SectionHead, Ticker } from "@/components/ui";
 import { fromPrice, fundingModels, maxBalance, programmeHref, usd } from "@/lib/plans";
@@ -58,47 +59,38 @@ export default function Home() {
   return (
     <PageTransition>
       {/* ═══ HERO ═══ */}
-      <section className="wrap pt-7">
-        <h1 className="display animate-rise mt-12 text-[clamp(3.6rem,10.4vw,9.75rem)]">
-          Learn the craft.
-          <br />
-          <em className="text-lime">Trade the capital.</em>
-        </h1>
+      <WaveHero
+        title={
+          <>
+            Learn the craft.
+            <br />
+            <em className="text-lime">Trade the capital.</em>
+          </>
+        }
+      >
+        <p className="text-[1.12rem] leading-[1.55] text-muted">
+          <span className="text-bone">CISI-aligned trading education, funded trading accounts and advanced IT services</span> — one UK
+          platform to take you from your first trade to trading with capital.
+        </p>
+        <ol className="flow mt-6" aria-label="At a glance">
+          <li>$500K max account</li>
+          <li>90% top split</li>
+          <li>6 funding models</li>
+        </ol>
+        <div className="mt-[30px] flex flex-wrap items-center gap-4">
+          <a href={siteUrls.funded} {...newTab} className="btn-ref">
+            Get funded <ArrowUpRight />
+          </a>
+          <Link href="/courses" className="btn-ref btn-ref-ghost">
+            Explore courses
+          </Link>
+        </div>
+      </WaveHero>
 
-        <div className="mt-14 flex flex-wrap items-stretch gap-6">
-          {/* Intro */}
-          <div className="animate-rise flex min-w-0 flex-[1_1_320px] flex-col justify-between gap-8 py-1" style={{ ["--delay" as string]: "150ms" }}>
-            <p className="max-w-[420px] text-[19px] leading-[1.55] text-muted">
-              <span className="text-bone">CISI-aligned trading education, funded trading accounts and advanced IT services</span> — one UK
-              platform to take you from your first trade to trading with capital.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <a href={siteUrls.funded} {...newTab} className="btn-lime">
-                Get funded <ArrowUpRight />
-              </a>
-              <Link href="/courses" className="btn-line">
-                Explore courses
-              </Link>
-            </div>
-            <div className="grid grid-cols-3 border-t border-line">
-              {[
-                ["$500K", "Max account"],
-                ["90%", "Top split"],
-                ["6", "Funding models"],
-              ].map(([v, k], i) => (
-                <div key={k} className={`pt-4 ${i ? "border-l border-line pl-3" : "pr-3"}`}>
-                  <p className="font-serif text-[34px] leading-tight">{v}</p>
-                  <p className="label mt-1 text-[11px] text-muted">{k}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Terminal */}
-          <div
-            className="animate-rise min-w-0 flex-[1.35_1_440px] overflow-hidden rounded-[18px] border border-bone/[0.14] bg-panel"
-            style={{ ["--delay" as string]: "300ms" }}
-          >
+      {/* ═══ EXAMPLE EVALUATION ═══ */}
+      <section className="wrap pt-[72px]">
+        <Reveal>
+          <div className="mx-auto max-w-[820px] overflow-hidden rounded-[18px] border border-bone/[0.14] bg-panel">
             <div className="label flex items-center justify-between gap-3 border-b border-line px-[18px] py-3.5 text-muted">
               <span className="inline-flex items-center gap-2">
                 <span className="h-2 w-2 rounded-full bg-lime" />
@@ -158,7 +150,7 @@ export default function Home() {
               <span className="flex-1 border-l border-line px-[18px] py-3 text-muted">○ Funded</span>
             </div>
           </div>
-        </div>
+        </Reveal>
       </section>
 
       <div className="mt-[72px]">

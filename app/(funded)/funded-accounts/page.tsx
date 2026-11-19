@@ -3,7 +3,8 @@ import Accordion from "@/components/Accordion";
 import FundingConfigurator from "@/components/FundingConfigurator";
 import PageTransition from "@/components/PageTransition";
 import Reveal from "@/components/Reveal";
-import { Kicker, PageIntro, SectionHead } from "@/components/ui";
+import { WaveHero } from "@/components/Hero";
+import { Kicker, SectionHead } from "@/components/ui";
 import { balancesFor, fromPrice, fundingModels, maxBalance, platformLabels, shortBalance, usd } from "@/lib/plans";
 import { fundedFaqs } from "@/lib/site";
 
@@ -23,9 +24,11 @@ const steps = [
 export default function FundedAccountsPage() {
   return (
     <PageTransition>
-      <PageIntro
-        kicker="/ ZenithWave Capital — Funded accounts"
+      <WaveHero
+        short
+        kicker="ZenithWave Capital — Funded accounts"
         meta={`$5K – ${usd(maxBalance / 1000)}K · Up to 90% split`}
+        titleClassName="text-[clamp(3rem,8.4vw,8.2rem)] max-w-[14ch]"
         title={
           <>
             Fund. Trade.
@@ -33,15 +36,17 @@ export default function FundedAccountsPage() {
             <em className="text-lime">Conquer.</em>
           </>
         }
-        action={
-          <a href="#configure" className="btn-lime">
+      >
+        <p className="text-[1.12rem] leading-relaxed text-muted">
+          Six funding models, eight account sizes and four platforms —{" "}
+          <span className="text-bone">challenges from {usd(fromPrice)}, or skip the evaluation entirely with Instant Funding.</span>
+        </p>
+        <div className="mt-[30px] flex flex-wrap items-center gap-4">
+          <a href="#configure" className="btn-ref">
             Build your challenge ↓
           </a>
-        }
-      >
-        Six funding models, eight account sizes and four platforms —{" "}
-        <span className="text-bone">challenges from {usd(fromPrice)}, or skip the evaluation entirely with Instant Funding.</span>
-      </PageIntro>
+        </div>
+      </WaveHero>
 
       {/* Purchase challenge */}
       <section id="configure" className="wrap scroll-mt-24 pb-[100px]">

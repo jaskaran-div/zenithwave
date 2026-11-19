@@ -3,7 +3,8 @@ import Link from "next/link";
 import CourseCatalogue from "@/components/CourseCatalogue";
 import PageTransition from "@/components/PageTransition";
 import Reveal from "@/components/Reveal";
-import { PageIntro, SectionHead } from "@/components/ui";
+import { PageHero } from "@/components/Hero";
+import { SectionHead } from "@/components/ui";
 import { programmeHref } from "@/lib/plans";
 import { getProgramme, programmes } from "@/lib/programmes";
 import { site } from "@/lib/site";
@@ -25,8 +26,8 @@ export default function CoursesPage() {
   const pro = getProgramme("professional-programme")!;
   return (
     <PageTransition>
-      <PageIntro
-        kicker="/ 01 — Education"
+      <PageHero
+        kicker="Education"
         meta={`${programmes.length} programmes · ages 9 to professional`}
         title={
           <>
@@ -36,14 +37,14 @@ export default function CoursesPage() {
           </>
         }
         action={
-          <a href={site.links.learningPlatform} className="btn-lime">
+          <a href={site.links.learningPlatform} className="btn-ref">
             Open learning platform ↗
           </a>
         }
       >
         From financial literacy for young learners to OCN London quality-assured ISFT certificates, the ACFT and live trading
         residencies — <span className="text-bone">find the programme that fits where you are.</span>
-      </PageIntro>
+      </PageHero>
 
       <section className="wrap pb-[100px]">
         <CourseCatalogue />

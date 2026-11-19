@@ -53,10 +53,11 @@ export const siteUrls = {
 export const mainHref = (path: string) => `${siteUrls.main}${path}`;
 
 // ── Sign in / Sign up ────────────────────────────────────────────────────────
-// TODO: replace "#" with your account-portal links. Used in every navbar.
+// Prop Account dashboard. Used in every navbar; "Purchase challenge" on the
+// funded site sends buyers to sign up.
 export const authLinks = {
-  signIn: "#",
-  signUp: "#",
+  signIn: "https://zenithwavecapitaldashboard.propaccount.com/en/sign-in",
+  signUp: "https://zenithwavecapitaldashboard.propaccount.com/en/sign-up",
 };
 
 type NavLink = { href: string; label: string; external?: boolean };
