@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Logo from "@/components/Logo";
 import { AuthButtons, MenuButton, headerClass, useHeaderState } from "@/components/Header";
 import { mainHref, siteUrls } from "@/lib/site";
 
@@ -26,7 +26,7 @@ export default function SubsiteHeader({ section, links, cta }: Props) {
     <header className={headerClass(scrolled, open)}>
       <div className="wrap flex h-[76px] items-center justify-between gap-6">
         <a href="/" aria-label={`ZenithWave Capital ${section}`} className="flex min-h-11 items-center gap-3" onClick={close}>
-          <Image src="/images/logo/zenithwave-mark.png" alt="ZenithWave Capital" width={313} height={200} priority className="h-11 w-auto sm:h-12" />
+          <Logo />
           <span className="label hidden border-l border-line pl-3 text-[11px] text-brass sm:inline">{section}</span>
         </a>
 
