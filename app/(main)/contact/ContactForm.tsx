@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
 import { useActionState, useState } from "react";
 import { getProgramme, programmes } from "@/lib/programmes";
+import { getItService, itServices } from "@/lib/site";
 import { sendContactMessage, type ContactState } from "./actions";
 
 const initialState: ContactState = { status: "idle", message: "" };
@@ -34,40 +34,66 @@ function Field({ id, label, error, children }: { id: string; label: string; erro
   );
 }
 
-const draftFor = (programmeSlug: string) => {
-  const prog = getProgramme(programmeSlug);
-  if (prog)
-    return prog.comingSoon
-      ? `Hi, please notify me when enrolment opens for the ${prog.title}.`
-      : `Hi, I’m interested in the ${prog.title}. Please share fees, start dates and how to enrol.`;
-  return "";
+const draftForProgramme = (slug: string) => {
+  const prog = getProgramme(slug);
+  if (!prog) return "";
+  return prog.comingSoon
+    ? `Hi, please notify me when enrolment opens for the ${prog.title}.`
+    : `Hi, I’m interested in the ${prog.title}. Please share fees, start dates and how to enrol.`;
 };
 
-export default function ContactForm() {
-  const params = useSearchParams();
-  const initialTopic = topics.find((t) => t.key === params.get("topic"))?.key;
-  const initialProgramme = getProgramme(params.get("programme") ?? "")?.slug ?? "";
+const draftForService = (slug: string) => {
+  const svc = getItService(slug);
+  return svc ? `Hi, I’d like to discuss your ${svc.title} service for a project. Please get in touch.` : "";
+};
+
+/**
+ * Initial values come from the URL (read on the server in page.tsx), e.g.
+ * /contact?topic=courses&programme=… or /contact?topic=it&service=…
+ * page.tsx keys this component on them, so following a new link always
+ * re-initialises the form instead of showing a previously cached state.
+ */
+export default function ContactForm({
+  initialTopic,
+  initialProgramme = "",
+  initialService = "",
+}: {
+  initialTopic?: string;
+  initialProgramme?: string;
+  initialService?: string;
+}) {
+  const startTopic =
+    topics.find((t) => t.key === initialTopic)?.key ?? (initialProgramme ? "courses" : initialService ? "it" : "funded");
 
   const [state, formAction, pending] = useActionState(sendContactMessage, initialState);
-  const [topic, setTopic] = useState<string>(initialTopic ?? (initialProgramme ? "courses" : "funded"));
+  const [topic, setTopic] = useState<string>(startTopic);
   const [programmeSlug, setProgrammeSlug] = useState(initialProgramme);
-  const [message, setMessage] = useState(() => draftFor(initialProgramme));
+  const [serviceSlug, setServiceSlug] = useState(initialService);
+  const [message, setMessage] = useState(() =>
+    startTopic === "it" ? draftForService(initialService) : draftForProgramme(initialProgramme),
+  );
   const [edited, setEdited] = useState(false);
   const e = state.errors ?? {};
 
   const programme = topic === "courses" ? getProgramme(programmeSlug) : undefined;
+  const service = topic === "it" ? getItService(serviceSlug) : undefined;
 
-  const redraft = (nextProg: string) => {
-    if (!edited) setMessage(draftFor(nextProg));
+  const redraft = (text: string) => {
+    if (!edited) setMessage(text);
   };
   const chooseProgramme = (slug: string) => {
     setProgrammeSlug(slug);
-    redraft(slug);
+    redraft(draftForProgramme(slug));
+  };
+  const chooseService = (slug: string) => {
+    setServiceSlug(slug);
+    redraft(draftForService(slug));
   };
   const chooseTopic = (key: string) => {
     setTopic(key);
-    if (key === "courses") redraft(programmeSlug);
-    else if (!edited) setMessage("");
+    if (key === "courses") redraft(draftForProgramme(programmeSlug));
+    else if (key === "it") redraft(draftForService(serviceSlug));
+    else redraft("");
   };
 
   if (state.status === "success") {
@@ -94,6 +120,7 @@ export default function ContactForm() {
       </div>
       <input type="hidden" name="topic" value={topics.find((t) => t.key === topic)?.label ?? "Other"} />
       <input type="hidden" name="programme" value={programme?.slug ?? ""} />
+      <input type="hidden" name="service" value={service?.slug ?? ""} />
 
       <fieldset>
         <legend className="label mb-3 text-[11px] text-muted">I’m interested in</legend>
@@ -113,6 +140,36 @@ export default function ContactForm() {
           ))}
         </div>
       </fieldset>
+
+      {/* ── Selected IT service ── */}
+      {topic === "it" && (
+        <div className="animate-rise overflow-hidden rounded-[14px] border border-lime/40 bg-lime/[0.05]">
+          <div className="flex flex-col gap-2 px-5 py-3 sm:flex-row sm:items-center sm:justify-between">
+            <label htmlFor="service-select" className="label text-[11px] text-lime">
+              {service ? "Selected service" : "Choose a service (optional)"}
+            </label>
+            <select
+              id="service-select"
+              value={serviceSlug}
+              onChange={(ev) => chooseService(ev.target.value)}
+              className="min-h-10 max-w-full rounded-lg border border-bone/20 bg-ink px-3 text-sm text-bone outline-none focus:border-lime sm:max-w-[340px]"
+            >
+              <option value="">No service selected</option>
+              {itServices.map((s) => (
+                <option key={s.slug} value={s.slug}>
+                  {s.title}
+                </option>
+              ))}
+            </select>
+          </div>
+          {service && (
+            <div key={service.slug} className="animate-rise border-t border-lime/20 px-5 py-4">
+              <p className="font-serif text-[26px] leading-tight">{service.title}</p>
+              <p className="mt-1.5 text-sm leading-relaxed text-muted">{service.body}</p>
+            </div>
+          )}
+        </div>
+      )}
 
       {/* ── Selected programme ── */}
       {topic === "courses" && (

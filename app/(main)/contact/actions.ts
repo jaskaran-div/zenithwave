@@ -2,7 +2,7 @@
 
 import nodemailer from "nodemailer";
 import { getProgramme } from "@/lib/programmes";
-import { site } from "@/lib/site";
+import { getItService, site } from "@/lib/site";
 
 export type ContactState = {
   status: "idle" | "success" | "error";
@@ -39,7 +39,8 @@ export async function sendContactMessage(_prev: ContactState, formData: FormData
   const rawTopic = field(formData, "topic", 60);
   const topic = TOPICS.includes(rawTopic) ? rawTopic : "Other";
   const programme = getProgramme(field(formData, "programme", 120));
-  const selection = programme ? programme.title : "";
+  const service = getItService(field(formData, "service", 60));
+  const selection = programme ? programme.title : service ? service.title : "";
   const values = { firstName: data.firstName, lastName: data.lastName, email: data.email, phone: data.phone };
 
   const errors: ContactState["errors"] = {};

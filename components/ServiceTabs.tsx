@@ -59,7 +59,7 @@ export default function ServiceTabs() {
           </div>
         </div>
         <div className="border-t border-line px-7 py-5">
-          <a href={mainHref("/contact?topic=it")} className="btn-lime w-full">
+          <a href={mainHref(`/contact?topic=it&service=${cur.slug}`)} className="btn-lime w-full">
             Discuss this service →
           </a>
         </div>

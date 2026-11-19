@@ -101,36 +101,44 @@ export const fundedFaqs = [
 // ── IT services ──────────────────────────────────────────────────────────────
 export const itServices = [
   {
+    slug: "data-engineering",
     title: "Data Engineering & Analytics",
     body: "Scalable ETL pipelines, data lake and warehouse implementation, real-time dashboards and predictive & prescriptive analytics.",
     icon: "data",
   },
   {
+    slug: "cloud-devops",
     title: "Cloud & DevOps",
     body: "Infrastructure as code, CI/CD pipelines and cloud architecture that keeps your systems fast, secure and always on.",
     icon: "cloud",
   },
   {
+    slug: "web-mobile",
     title: "Web & Mobile Development",
     body: "High-performance websites, web apps and mobile apps built with modern frameworks and a client-first approach.",
     icon: "code",
   },
   {
+    slug: "quality-engineering",
     title: "Quality Engineering & Testing",
     body: "Automated and manual QA, test strategy and quality engineering to ship reliable software with confidence.",
     icon: "check",
   },
   {
+    slug: "ux-design",
     title: "UX & Product Design",
     body: "Research-driven UX and interface design that turns complex workflows into intuitive experiences.",
     icon: "design",
   },
   {
+    slug: "ai-automation",
     title: "AI & Automation",
     body: "AI-integrated solutions and intelligent automation that turn your data into decisions and save hours every week.",
     icon: "ai",
   },
 ] as const;
+
+export const getItService = (slug: string | null | undefined) => itServices.find((s) => s.slug === slug);
 
 // ── Company ──────────────────────────────────────────────────────────────────
 export const team = [

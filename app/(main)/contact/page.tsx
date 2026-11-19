@@ -35,7 +35,26 @@ function FormSkeleton() {
   );
 }
 
-export default function ContactPage() {
+type Search = Promise<Record<string, string | string[] | undefined>>;
+const one = (v: string | string[] | undefined) => (Array.isArray(v) ? v[0] : v) ?? "";
+
+/** Reads ?topic / ?programme / ?service on the server so the form arrives pre-filled. */
+async function PrefilledContactForm({ searchParams }: { searchParams: Search }) {
+  const q = await searchParams;
+  const topic = one(q.topic);
+  const programme = one(q.programme);
+  const service = one(q.service);
+  return (
+    <ContactForm
+      key={`${topic}|${programme}|${service}`}
+      initialTopic={topic}
+      initialProgramme={programme}
+      initialService={service}
+    />
+  );
+}
+
+export default function ContactPage({ searchParams }: { searchParams: Search }) {
   return (
     <PageTransition>
       <section className="wrap pt-7">
@@ -55,7 +74,7 @@ export default function ContactPage() {
             <span className="hidden sm:inline">All fields marked * are required</span>
           </div>
           <Suspense fallback={<FormSkeleton />}>
-            <ContactForm />
+            <PrefilledContactForm searchParams={searchParams} />
           </Suspense>
         </Reveal>
 
