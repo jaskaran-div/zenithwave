@@ -11,12 +11,10 @@ type Props = {
   links: { href: string; label: string }[];
   /** Optional main-site page to promote instead of Sign in / Sign up (path on the main site). */
   cta?: { href: string; label: string };
-  /** Dark site (IT Services): use the all-white logo, as on the original dark design. */
-  darkLogo?: boolean;
 };
 
 /** Navbar for the subdomain sites. Links back to the main site are absolute. */
-export default function SubsiteHeader({ section, links, cta, darkLogo = false }: Props) {
+export default function SubsiteHeader({ section, links, cta }: Props) {
   const { open, setOpen, scrolled } = useHeaderState();
   const close = () => setOpen(false);
   const back = [
@@ -28,14 +26,7 @@ export default function SubsiteHeader({ section, links, cta, darkLogo = false }:
     <header className={headerClass(scrolled, open)}>
       <div className="wrap flex h-[76px] items-center justify-between gap-6">
         <a href="/" aria-label={`ZenithWave Capital ${section}`} className="flex min-h-11 items-center gap-3" onClick={close}>
-          <Image
-            src={darkLogo ? "/images/logo/logo-light.svg" : "/images/logo/logo-new.svg"}
-            alt="ZenithWave Capital"
-            width={376}
-            height={69}
-            priority
-            className={`h-7 w-auto sm:h-[30px] ${darkLogo ? "brightness-0 invert" : ""}`}
-          />
+          <Image src="/images/logo/zenithwave-mark.png" alt="ZenithWave Capital" width={313} height={200} priority className="h-11 w-auto sm:h-12" />
           <span className="label hidden border-l border-line pl-3 text-[11px] text-brass sm:inline">{section}</span>
         </a>
 

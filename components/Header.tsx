@@ -74,7 +74,7 @@ export default function Header() {
     <header className={headerClass(scrolled, open)} style={{ viewTransitionName: "site-header" }}>
       <div className="wrap flex h-[76px] items-center justify-between gap-6">
         <Link href="/" aria-label="ZenithWave Capital home" className="flex min-h-11 items-center" onClick={close}>
-          <Image src="/images/logo/logo-new.svg" alt="ZenithWave Capital" width={376} height={69} priority className="h-7 w-auto sm:h-[30px]" />
+          <Image src="/images/logo/zenithwave-mark.png" alt="ZenithWave Capital" width={313} height={200} priority className="h-11 w-auto sm:h-12" />
         </Link>
 
         <nav aria-label="Main" className="hidden items-center gap-0.5 xl:flex">

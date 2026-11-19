@@ -16,7 +16,6 @@ export default function ITLayout({ children }: { children: React.ReactNode }) {
     <div className="theme-classic flex min-h-screen flex-1 flex-col">
       <SubsiteHeader
         section="IT Services"
-        darkLogo
         links={[
           { href: "#services", label: "Services" },
           { href: "#process", label: "Process" },
