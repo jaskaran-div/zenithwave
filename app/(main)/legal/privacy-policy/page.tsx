@@ -1,4 +1,3 @@
-import { MaskTitle } from "@/components/Hero";
 import type { Metadata } from "next";
 import { site } from "@/lib/site";
 
@@ -7,7 +6,6 @@ export const metadata: Metadata = { title: "Privacy Policy" };
 export default function PrivacyPolicyPage() {
   return (
     <div className="legal-prose">
-      <MaskTitle className="mb-8 text-[clamp(2.8rem,6vw,5rem)]">Privacy Policy</MaskTitle>
       <p>
         At ZenithWave Capital Limited (“Company,” “we,” “our,” or “us”), we are committed to protecting
         your privacy and handling your personal data responsibly. This Privacy Policy explains how we

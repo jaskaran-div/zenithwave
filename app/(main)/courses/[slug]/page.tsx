@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Accordion from "@/components/Accordion";
 import ModuleList from "@/components/ModuleList";
-import { MaskTitle } from "@/components/Hero";
+import { WaveHero } from "@/components/Hero";
 import PageTransition from "@/components/PageTransition";
 import Reveal from "@/components/Reveal";
 import { ArrowRight } from "@/components/ui";
@@ -64,28 +64,29 @@ export default async function ProgrammePage({ params }: PageProps<"/courses/[slu
 
   return (
     <PageTransition>
-      {/* Breadcrumb + hero */}
-      <section className="wrap pt-7">
-        <nav aria-label="Breadcrumb" className="label flex flex-wrap items-center gap-2 border-b border-line pb-3.5 text-muted">
-          <Link href="/courses" className="hover:text-bone">
-            Courses
-          </Link>
-          <span aria-hidden="true">/</span>
-          <span>{cat.label}</span>
-          <span aria-hidden="true">/</span>
-          <span className="text-bone">{p.badge}</span>
-        </nav>
+      {/* Hero */}
+      <WaveHero
+        short
+        kicker={
+          <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-2">
+            <Link href="/courses" className="hover:text-bone">
+              Courses
+            </Link>
+            <span aria-hidden="true">/</span>
+            <span>{cat.label}</span>
+          </nav>
+        }
+        meta={p.comingSoon ? "Coming soon" : p.badge}
+        title={p.title}
+        titleClassName="text-[clamp(2.6rem,6.4vw,6rem)] max-w-[16ch]"
+      >
+        <p className="font-serif text-[clamp(22px,2.2vw,30px)] leading-snug text-lime italic">{p.tagline}</p>
+      </WaveHero>
+
+      <section className="wrap">
         <div className="grid gap-10 pt-14 pb-16 lg:grid-cols-[minmax(0,1fr)_380px]">
           <div>
-            <span className="label inline-flex items-center gap-2 rounded-full border border-lime/40 px-3 py-1 text-lime">
-              {p.comingSoon && <span className="animate-pulse-dot h-1.5 w-1.5 rounded-full bg-lime" />}
-              {p.comingSoon ? "Coming soon" : p.badge}
-            </span>
-            <MaskTitle className="mt-6 text-[clamp(2.6rem,6vw,5.6rem)]">{p.title}</MaskTitle>
-            <p className="animate-rise mt-6 font-serif text-[clamp(22px,2.2vw,30px)] text-lime italic" style={{ ["--delay" as string]: "100ms" }}>
-              {p.tagline}
-            </p>
-            <div className="mt-8 max-w-[680px] space-y-4 text-lg leading-relaxed text-muted">
+            <div className="max-w-[680px] space-y-4 text-lg leading-relaxed text-muted">
               {p.overview.map((o) => (
                 <p key={o}>{o}</p>
               ))}

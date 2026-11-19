@@ -78,7 +78,7 @@ export function WaveHero({
   );
 }
 
-/** Inner-page hero: crumb, headline, intro copy and actions. */
+/** Inner-page hero — the same wave hero as the home page, slightly shorter. */
 export function PageHero({
   kicker,
   meta,
@@ -90,20 +90,19 @@ export function PageHero({
   kicker?: ReactNode;
   meta?: ReactNode;
   title: ReactNode;
+  /** Intro paragraph. */
   children?: ReactNode;
   action?: ReactNode;
   titleClassName?: string;
 }) {
   return (
-    <section className="wrap pt-[clamp(40px,8vh,96px)] pb-[clamp(56px,7vw,90px)]">
-      <Crumb kicker={kicker} meta={meta} />
-      <MaskTitle className={titleClassName}>{title}</MaskTitle>
+    <WaveHero short kicker={kicker} meta={meta} title={title} titleClassName={titleClassName}>
       {(children || action) && (
-        <div className="hero-fade mt-7 max-w-[46ch]" style={{ ["--delay" as string]: "700ms" }}>
+        <>
           {children && <p className="text-[1.12rem] leading-relaxed text-muted">{children}</p>}
-          {action && <div className="mt-[30px] flex flex-wrap items-center gap-7">{action}</div>}
-        </div>
+          {action && <div className="mt-[30px] flex flex-wrap items-center gap-4">{action}</div>}
+        </>
       )}
-    </section>
+    </WaveHero>
   );
 }

@@ -1,4 +1,3 @@
-import { MaskTitle } from "@/components/Hero";
 import type { Metadata } from "next";
 import { site } from "@/lib/site";
 
@@ -7,7 +6,6 @@ export const metadata: Metadata = { title: "Terms and Conditions" };
 export default function TermsPage() {
   return (
     <div className="legal-prose">
-      <MaskTitle className="mb-8 text-[clamp(2.8rem,6vw,5rem)]">Terms and Conditions</MaskTitle>
 
       <h2>1. Agreement to Terms</h2>
       <p>
