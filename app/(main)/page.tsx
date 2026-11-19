@@ -59,15 +59,6 @@ export default function Home() {
     <PageTransition>
       {/* ═══ HERO ═══ */}
       <section className="wrap pt-7">
-        <div className="label flex flex-wrap justify-between gap-2 border-b border-line pb-3.5 text-muted">
-          <span>[ ZenithWave Capital Ltd — UK Co. 16252585 ]</span>
-          <span className="hidden items-center gap-2 md:inline-flex">
-            <span className="animate-pulse-dot h-[7px] w-[7px] rounded-full bg-lime" />
-            Education · Funding · Technology
-          </span>
-          <span>Est. 2025 — Croydon, London</span>
-        </div>
-
         <h1 className="display animate-rise mt-12 text-[clamp(3.6rem,10.4vw,9.75rem)]">
           Learn the craft.
           <br />
