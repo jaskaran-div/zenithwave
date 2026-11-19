@@ -8,12 +8,6 @@ const nextConfig: NextConfig = {
   partialPrefetching: true,
   turbopack: {
     root: __dirname,
-    rules: {
-      "*.css": {
-        loaders: ["@tailwindcss/turbopack"],
-        as: "*.css",
-      },
-    },
   },
   // Old URLs (previous site versions, still indexed by Google) → new pages
   async redirects() {
