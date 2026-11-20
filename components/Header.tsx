@@ -40,6 +40,15 @@ export function useHeaderState() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
+  // Drop the ?_v cache-buster added by app/api/stale-chunk/route.ts after it
+  // reloaded a stale CDN-cached page, so the address bar stays clean.
+  useEffect(() => {
+    const url = new URL(window.location.href);
+    if (!url.searchParams.has("_v")) return;
+    url.searchParams.delete("_v");
+    window.history.replaceState(window.history.state, "", url.pathname + url.search + url.hash);
+  }, []);
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();

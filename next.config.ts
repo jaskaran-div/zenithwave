@@ -9,6 +9,16 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: __dirname,
   },
+  // JS chunks missing from this build (requested by stale CDN-cached HTML after
+  // a redeploy) get a tiny script that reloads the page fresh — see
+  // app/api/stale-chunk/route.ts. `fallback` only applies when no file matches.
+  async rewrites() {
+    return {
+      beforeFiles: [],
+      afterFiles: [],
+      fallback: [{ source: "/_next/static/chunks/:path*", destination: "/api/stale-chunk" }],
+    };
+  },
   // Old URLs (previous site versions, still indexed by Google) → new pages
   async redirects() {
     return [
