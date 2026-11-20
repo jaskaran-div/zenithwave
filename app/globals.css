@@ -36,8 +36,7 @@
   --color-line: rgb(18 22 58 / 0.13);
 }
 
-/* Original "Editorial Terminal" palette — ink ground, bone text, acid-lime
-   accent. Used only by the IT Services site (app/(it)/layout.tsx). Declared
+/* "Editorial Terminal" palette — ink ground, bone text, cobalt accent. Used only by the IT Services site (app/(it)/layout.tsx). Declared
    after .on-dark below would lose, so it also re-scopes .on-dark (footer). */
 .theme-classic,
 .theme-classic .on-dark {
@@ -48,10 +47,13 @@
   --color-bone: #ece7de;
   --color-muted: #a39e95;
   --color-dim: #77736c;
-  --color-lime: #cdff57;
-  --color-lime-soft: #e4ff9e;
-  --color-on-lime: #0b0b0c;
-  --color-brass: #cdff57;
+  /* Accent = the brand site's cobalt (was acid-lime). Fills use the exact
+     cobalt; text accents use the brand's on-dark cobalt so they stay legible
+     on the near-black ground. */
+  --color-lime: #2b45e8;
+  --color-lime-soft: #5a6ff0;
+  --color-on-lime: #ffffff;
+  --color-brass: #8c9bff;
   --color-line: rgb(236 231 222 / 0.12);
   color: var(--color-bone);
   color-scheme: dark;
@@ -59,12 +61,15 @@
 .theme-classic {
   background: var(--color-ink);
 }
+.theme-classic .text-lime {
+  color: var(--color-brass);
+}
 .theme-classic .btn-lime:hover {
-  box-shadow: 0 14px 40px -12px rgb(205 255 87 / 0.6);
+  box-shadow: 0 14px 40px -12px rgb(43 69 232 / 0.6);
 }
 .theme-classic ::selection {
-  background: #cdff57;
-  color: #0b0b0c;
+  background: #2b45e8;
+  color: #ffffff;
 }
 
 /* Navy scope (footer, feature bands) — the brand site's dark values */

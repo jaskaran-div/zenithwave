@@ -22,7 +22,15 @@ export function proxy(request: NextRequest) {
 
   const subsite = subsites.find((s) => s.host === host);
   if (subsite) {
-    if (pathname === "/") return NextResponse.rewrite(new URL(subsite.path + search, request.url));
+    if (pathname === "/") {
+      const res = NextResponse.rewrite(new URL(subsite.path + search, request.url));
+      // Next marks these static pages `s-maxage=31536000`, so the hosting CDN
+      // kept serving day-old HTML after a redeploy. That HTML pointed at JS
+      // chunks the new build had deleted (404) → "This page couldn't load".
+      // Make the CDN revalidate with the server on every request instead.
+      res.headers.set("Cache-Control", "public, max-age=0, must-revalidate");
+      return res;
+    }
     if (pathname === subsite.path) return NextResponse.redirect(new URL("/" + search, subsite.url));
     return NextResponse.redirect(new URL(pathname + search, siteUrls.main));
   }

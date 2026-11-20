@@ -13,7 +13,8 @@ export const metadata: Metadata = {
 const directory = [
   { k: "General & support", v: site.emails.support, href: `mailto:${site.emails.support}` },
   { k: "Phone", v: site.phones.general.label, href: site.phones.general.href },
-  { k: "Partnerships — Peter Antal", v: site.emails.partnerships, href: `mailto:${site.emails.partnerships}` },
+  // Hidden for now, along with Peter Antal on the About page — uncomment to show again.
+  // { k: "Partnerships — Peter Antal", v: site.emails.partnerships, href: `mailto:${site.emails.partnerships}` },
   { k: "Compliance & privacy", v: site.emails.compliance, href: `mailto:${site.emails.compliance}` },
 ];
 

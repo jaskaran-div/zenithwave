@@ -98,7 +98,7 @@ export default function AboutPage() {
             }
             side="Practitioners in trading, operations and business development, based in Croydon, London."
           />
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {team.map((m, i) => (
               <Reveal key={m.name} delay={i * 90}>
                 <article className="card card-hover group h-full overflow-hidden">

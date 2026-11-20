@@ -152,16 +152,20 @@ export const team = [
     name: "Neil Crammond",
     role: "Trading Strategy & Mentorship",
     bio: "Leads trading strategy, risk management and direct mentorship, drawing on experience in floor trading and market commentary.",
+    image: "/images/team/Neil-Crammond-Profile.png",
   },
-  {
-    name: "Peter Antal",
-    role: "Head of Business Development",
-    bio: "Drives partnerships and commercial direction, working with institutions and partners across the UK.",
-  },
+  // Hidden from the About page for now — uncomment to show again.
+  // {
+  //   name: "Peter Antal",
+  //   role: "Head of Business Development",
+  //   bio: "Drives partnerships and commercial direction, working with institutions and partners across the UK.",
+  // },
   {
     name: "Ratender Dhull",
     role: "Head of Operations",
     bio: "Runs day-to-day operations, ensuring every learner and partner receives a seamless experience.",
+    // Photo hidden for now (source too low-res) — shows "RD" initials instead. Uncomment to show again:
+    // image: "/images/team/Ratender-Dhull-Profile.webp",
   },
 ];
 
